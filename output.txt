@@ -1,0 +1,13 @@
+If odd number of integers are given, the last exponent is assumed to be 1.
+Original input:
+2x^12+3x^11+x^2+3x+7
+3x^5+6x^4+3x^5+2x+8x
+Canonical form:
+2x^12+3x^11+x^2+3x+7
+6x^5+6x^4+10x
+Sum:
+2x^12+3x^11+6x^5+6x^4+x^2+13x+7
+Difference:
+2x^12+3x^11+6x^5+6x^4+x^2-7x+7
+Product:
+12x^17+30x^16+18x^15+20x^13+30x^12+6x^7+24x^6+60x^5+42x^4+10x^3+30x^2+70x
