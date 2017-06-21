@@ -27,23 +27,24 @@ void print_list(node<T>* p, ostream& out){
 	while(p){
 		//coefficient part:
 		T c = p->getCoef();
-
-		if(c == 0){ p=p->link(); continue;}//if coef is 0, skip;
-		else if(c == 1 && firstTerm){cout<<""; out<<""; firstTerm=false;} //print no coef;
-		else if(c == 1 && !firstTerm){cout<<"+"; out<<"+";}
-		else if(c>0 && !firstTerm) {cout<<"+"<<c; out<<"+"<<c;}
-		else {cout<<c; out<<c; firstTerm=false;}   //all other conditions simply print c;
-		
-		//exponent part; 
 		T e = p->getExp();
 
+		if(c == 0){ p=p->link(); continue;}//if coef is 0, skip;
+		else if(c == 1 && firstTerm){out<<""; firstTerm=false;} //print no coef;
+		else if(c == 1 && !firstTerm && e == 0){out<<"+1";}
+		else if(c == 1 && !firstTerm){out<<"+";}
+		else if(c>0 && !firstTerm) {out<<"+"<<c;}
+		else if(c == -1 && e != 0) {out<<"-";}
+		else {out<<c; firstTerm=false;}   //all other conditions simply print c;
+		
+		//exponent part; 
+
 		if(e == 0){ p=p->link(); continue;}    //skip since it's 1;
-		else if(e == 1){ cout<<"x";out<<"x";} //print only x;
-		else {cout<<"x^"<<e; out<<"x^"<<e;}
+		else if(e == 1){out<<"x";} //print only x;
+		else {out<<"x^"<<e;}
 
 		p=p->link();
 	}
-	cout<<endl;
 	out<<endl;
 }
 
@@ -286,42 +287,45 @@ int main(int argc, char *argv[]){
 	// missing a integer, then it is assume to be 1;	
 	const char* filename="input.txt";
 	const char* outfile="output.txt";
-	node<int>* first;
-	node<int>* second;
 
 	ifstream infile(filename);
 	ofstream out(outfile);
 	out<<"If odd number of integers are given, the last exponent is assumed to be 1.";
 	out<<endl;
-	int i;
-	string s;
-	getline(infile, s);  //get first line to s;
-	stringstream ss1(s);
-	first=make_int_list<int>(ss1);
+	while(infile){
+		node<int>* first;
+		node<int>* second;
 
-	getline(infile, s);
-	stringstream ss2(s);
-	second=make_int_list<int>(ss2);
+		int i;
+		string s;
+		getline(infile, s);  //get first line to s;
+		stringstream ss1(s);
+		if(ss1.str()=="") break;  //if no more lines, get out;
+		first=make_int_list<int>(ss1);
+		getline(infile, s);
+		stringstream ss2(s);
+		second=make_int_list<int>(ss2);	
+		out<<"Original input:"<<endl;
+		print_list(first, out);
+		print_list(second, out);
 
-	out<<"Original input:"<<endl;
-	print_list(first, out);
-	print_list(second, out);
+		out<<"Canonical form:"<<endl;
+		sort_list(first);
+		sort_list(second);
+		print_list(first, out);
+		print_list(second, out);
 
-	out<<"Canonical form:"<<endl;
-	sort_list(first);
-	sort_list(second);
-	print_list(first, out);
-	print_list(second, out);
+		out<<"Sum:"<<endl;
+		print_list(sum(first,second), out);
 
-	out<<"Sum:"<<endl;
-	print_list(sum(first,second), out);
+		out<<"Difference:"<<endl;
+		print_list(difference(first,second), out);
 
-	out<<"Difference:"<<endl;
-	print_list(difference(first,second), out);
+		out<<"Product:"<<endl;
+		print_list(product(first,second), out);
 
-	out<<"Product:"<<endl;
-	print_list(product(first,second), out);
-
+		out<<"**************************************"<<endl;
+	}
 
 	infile.close();
 	out.close();
