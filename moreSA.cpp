@@ -28,15 +28,6 @@ public:
 		if(pointee != 0) delete [] pointee;
 	}
 
-        smartPointer<T>& operator=(smartPointer<T>& rhs){
-		if(this == &rhs) return *this;
-		delete pointee;
-
-		pointee = rhs.pointee;
-		rhs.pointee = 0;
-		return *this;
-	}
-
 
 	T* operator->() const{
 		return pointee;
@@ -53,7 +44,7 @@ public:
 
 };
 
-//smart pointer class;
+
 //--------------------------------------------------------
 
 template <typename T>
