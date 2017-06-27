@@ -9,22 +9,46 @@ template <typename T>
 class SA{
 
 private:
-	int low, high;
-	T* p;
+	int low, high, length;
+//-------------------------------------------------------------------------
+//variable changes made here;
+	static SA<T> *newlist;
+	union{
+		SA<T> *freepointer;
+		T* p;		
+	};
 
 public:
+
 
 //--------------------------------------------------------------------------
 //overloading operator new and delete;
 //not sure what professor wanted, but they are overloaded and class specific now....
 
 void* operator new(size_t size){
-	void* allocated = malloc(size); //allocate necessary space;
-	return allocated;
+	if(size != sizeof(SA<T>)){
+		return malloc(size);
+	}
+	else if(!newlist){
+		newlist = (SA<T> *)new T[100*sizeof(SA<T>)];
+		int temp;
+		for(int i=0; i<99; i++){
+			newlist[i].freepointer = &(newlist[i+1]);
+			temp = i;
+		}
+		newlist[temp].freepointer=0;
+	}
+
+	
+	SA<T> *savenew = newlist;
+	newlist = newlist->freepointer;
+	return savenew;
 }
 
 void operator delete(void* ptr){
-	return free(ptr);
+	SA<T> *s = (SA *)ptr;
+	s->freepointer = newlist;
+	newlist = s;
 }
 
 
@@ -115,8 +139,12 @@ void operator delete(void* ptr){
 
 };
 
+//-------------------------------------------------------------
+//initialize static member;
+template<typename T>
+SA<T>* SA<T>::newlist=0;
 
-
+//-------------------------------------------------------------
 template <typename U>
 ostream& operator<<(ostream& os, SA<U> s){
 	int size=s.high-s.low+1;
