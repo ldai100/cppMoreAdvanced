@@ -110,6 +110,44 @@ T* end(){
 	//the +1 is because we have to go 1 spot after the
 	//last index to iterator through the whole list;
 }
+
+
+struct iterator{
+	friend class SA;
+	T* pos;
+	
+	iterator(T* init = 0):pos(init){}
+
+	T& operator*(){
+		return *pos;
+	}
+
+	const T& operator*() const{
+		return *pos;
+	}
+
+	iterator& operator++(){
+		pos++;
+		return pos;
+	}
+
+	iterator operator++(int){
+		T* temp = pos;
+		pos++;
+		return temp;
+	}
+
+	bool operator==(const T* x) const{
+		return pos == x;
+	}
+
+	bool operator!=(const T* x) const{
+		return pos != x;
+	}
+
+};
+
+
 //note not even ++ need to be overloaded because build-in ++
 //for pointer to T* would work;
 

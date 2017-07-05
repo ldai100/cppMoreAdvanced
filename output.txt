@@ -1,0 +1,48 @@
+Polynomial1 regular form:       -1+5x+20x^3+9x^2-2x+x^2+2x^3+x^9
+
+Polynomial1 canonical form:     x^9+22x^3+10x^2+3x-1
+
+Polynomial2 regular form:       -2x^3+10x^3-11x^2-x+4x^2-3x^3+5x^9
+
+Polynomial2 canonical form:     5x^9+5x^3-7x^2-x
+
+polynomial1 + polynomial2 =     6x^9+27x^3+3x^2+2x-1
+
+polynomial1 - polynomial2 =     -4x^9+17x^3+17x^2+4x-1
+
+polynomial1 * polynomial2 =     5x^18+115x^12+43x^11+14x^10-5x^9+110x^6-104x^5-77x^4-36x^3+4x^2+x
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Polynomial1 regular form:       3x+4x^5-7x^2+6x-9
+
+Polynomial1 canonical form:     4x^5-7x^2+9x-9
+
+Polynomial2 regular form:       5x^3+1
+
+Polynomial2 canonical form:     5x^3+1
+
+polynomial1 + polynomial2 =     4x^5+5x^3-7x^2+9x-8
+
+polynomial1 - polynomial2 =     4x^5-5x^3-7x^2+9x-10
+
+polynomial1 * polynomial2 =     20x^8-31x^5+45x^4-45x^3-7x^2+9x-9
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Polynomial1 regular form:       11x^11+10x^10+5x^5+2x^2+1
+
+Polynomial1 canonical form:     11x^11+10x^10+5x^5+2x^2+1
+
+Polynomial2 regular form:       6x^6+4x^4+3x^3
+
+Polynomial2 canonical form:     6x^6+4x^4+3x^3
+
+polynomial1 + polynomial2 =     11x^11+10x^10+6x^6+5x^5+4x^4+3x^3+2x^2+1
+
+polynomial1 - polynomial2 =     11x^11+10x^10-6x^6+5x^5-4x^4-3x^3+2x^2+1
+
+polynomial1 * polynomial2 =     66x^17+60x^16+44x^15+73x^14+30x^13+30x^11+20x^9+27x^8+14x^6+6x^5+4x^4+3x^3
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
